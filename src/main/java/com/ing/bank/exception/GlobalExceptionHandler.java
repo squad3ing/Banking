@@ -11,7 +11,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(value = { LoginNotFoundException.class })
 	public ResponseEntity<ResponseError> loginError(Exception e) {
-		ResponseError loginError = new ResponseError(e.getMessage());
+		ResponseError loginError = new ResponseError(e.getMessage(), HttpStatus.NOT_FOUND.value());
 		return new ResponseEntity<>(loginError, HttpStatus.NOT_FOUND);
 
 	}
@@ -19,7 +19,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(value = UserNotFoundException.class)
 	public ResponseEntity<ResponseError> mapException(Exception e) {
 		ResponseError error = new ResponseError();
-		error.setErrorMessage(e.getMessage());
+		error.setStatusMessage(e.getMessage());
 		return new ResponseEntity<>(error, HttpStatus.NOT_ACCEPTABLE);
 
 	}
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(value = InsufficientBalanceException.class)
 	public ResponseEntity<ResponseError> balanceException(Exception e) {
 		ResponseError balanceError = new ResponseError();
-		balanceError.setErrorMessage(e.getMessage());
+		balanceError.setStatusMessage(e.getMessage());
 		return new ResponseEntity<>(balanceError, HttpStatus.NOT_ACCEPTABLE);
 
 	}
@@ -35,14 +35,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(value = AccountNotFoundException.class)
 	public ResponseEntity<ResponseError> accountNotFound(Exception e) {
 		ResponseError balanceErrors= new ResponseError();
-		balanceErrors.setErrorMessage(e.getMessage());
+		balanceErrors.setStatusMessage(e.getMessage());
 		return new ResponseEntity<>(balanceErrors, HttpStatus.NOT_ACCEPTABLE);
 	}
 
 	@ExceptionHandler(value = TransactionNotFoundException.class)
 	public ResponseEntity<ResponseError> transactionError(Exception e) {
 		ResponseError error = new ResponseError();
-		error.setErrorMessage(e.getMessage());
+		error.setStatusMessage(e.getMessage());
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 
 	}

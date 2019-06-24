@@ -14,11 +14,12 @@ import lombok.ToString;
 public class ResponseError implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String errorMessage;
+	private String statusMessage;
+	private Integer statusCode;
 
-	public ResponseError(String message) {
-		this.errorMessage = message;
+	public ResponseError(String statusMessage,Integer statusCode) {
+		this.statusMessage = statusMessage;
+		this.statusCode = statusCode;
 	}
 
 }
-	
